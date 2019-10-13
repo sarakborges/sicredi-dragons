@@ -1,24 +1,30 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from "./app.component";
+import { AppComponent } from './app.component';
 
-import { AuthGuard } from "@helpers/auth.guard";
+import { AuthGuard } from '@helpers/auth.guard';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: AppComponent,
     children: [
       {
-        path: "auth",
-        loadChildren: "./modules/auth/auth.module#AuthModule"
+        path: '',
+        redirectTo: 'main',
+        pathMatch: 'full'
       },
 
       {
-        path: "main",
+        path: 'auth',
+        loadChildren: './modules/auth/auth.module#AuthModule'
+      },
+
+      {
+        path: 'main',
         canActivate: [AuthGuard],
-        loadChildren: "./modules/main/main.module#MainModule"
+        loadChildren: './modules/main/main.module#MainModule'
       }
     ]
   }

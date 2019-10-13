@@ -1,13 +1,13 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
-import { ErrorInterceptor } from "@helpers/error.interceptor";
-import { JwtInterceptor } from "@helpers/jwt.interceptor";
+import { ErrorInterceptor } from '@helpers/error.interceptor';
+import { JwtInterceptor } from '@helpers/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent],

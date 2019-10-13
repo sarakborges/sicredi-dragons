@@ -1,15 +1,15 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { DragonsComponent } from "./dragons.component";
+import { DragonsComponent } from './dragons.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: DragonsComponent,
     children: [
       {
-        // path: "list",
+        // path: 'list',
         // component:
       }
     ]
@@ -17,7 +17,6 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [DragonsComponent],
   imports: [RouterModule.forChild(routes)]
 })
 export class DragonsRoutingModule {}
