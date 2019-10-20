@@ -50,13 +50,13 @@
         label {
           position: absolute;
           z-index: 1;
-          top: 0;
+          top: 17px;
           left: 0;
 
           width: 100%;
-          padding: 0 15px;
+          padding: 0 17px;
 
-          transition: 0.2s;
+          transition: top 0.3s, padding 0.3s;
 
           &.not-empty {
             z-index: 3;
@@ -77,14 +77,26 @@
           line-height: 50px;
 
           border-radius: 5px;
-          border: 0;
+          border: 2px solid transparent;
           background: $lightgrey;
 
           transition: 0.2s;
 
           &:focus {
-            box-shadow: 0 0 5px $lightgrey;
-            background: lighten($lightgrey, 3%);
+            box-shadow: 0 0 5px $lightishgrey;
+            border-color: $lightishgrey;
+          }
+
+          &:disabled {
+            background: $lightergrey;
+            color: $lightishgrey;
+          }
+        }
+
+        &.invalid {
+          input:not(:disabled) {
+            box-shadow: 0 0 5px $red;
+            border-color: $red;
           }
         }
       }
@@ -102,24 +114,54 @@
           height: 70px;
 
           background: $white;
-          border: 2px solid $lightgrey;
+          border: 2px solid $lightishgrey;
           border-radius: 25px;
           cursor: pointer;
 
-          color: $lightgrey;
+          color: $lightishgrey;
           font-size: 36px;
           font-weight: 700;
           text-align: center;
-          line-height: 46px;
+          line-height: 66px;
           font-family: $iconfont;
 
           transition: 0.2s;
 
-          &:hover {
-            box-shadow: 0 0 5px $lightgrey;
+          &:hover:not(:disabled) {
+            background: $lightgrey;
+            box-shadow: 0 0 5px $lightishgrey;
+          }
+
+          &:disabled {
+            border-color: $lightgrey;
+            color: $lightgrey;
+            cursor: default;
+          }
+
+          span {
+            display: block;
+
+            &.rotate {
+              animation-name: loadingrotation;
+              animation-duration: 1s;
+              animation-direction: normal;
+              animation-iteration-count: infinite;
+              animation-delay: 0;
+              animation-timing-function: linear;
+            }
           }
         }
       }
     }
+  }
+}
+
+@keyframes loadingrotation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

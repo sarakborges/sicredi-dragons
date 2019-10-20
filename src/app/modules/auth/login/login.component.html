@@ -1,9 +1,14 @@
 <div id="login">
   <div class="login_section">
-    <form class="login_form" [formGroup]="form">
+    <form class="login_form" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="title">Login</div>
 
-      <div class="form_item">
+      <div
+        class="form_item"
+        [class.invalid]="
+          !form.controls.username.pristine && !form.controls.username.valid
+        "
+      >
         <label for="username" [class.not-empty]="!!form.controls.username.value"
           >Nome de usuário</label
         >
@@ -13,10 +18,16 @@
           id="username"
           placeholder="Nome de usuário"
           formControlName="username"
+          [attr.disabled]="isLoading ? true : null"
         />
       </div>
 
-      <div class="form_item">
+      <div
+        class="form_item"
+        [class.invalid]="
+          !form.controls.password.pristine && !form.controls.password.valid
+        "
+      >
         <label for="password" [class.not-empty]="!!form.controls.password.value"
           >Senha</label
         >
@@ -26,11 +37,15 @@
           id="password"
           placeholder="Senha"
           formControlName="password"
+          [attr.disabled]="isLoading ? true : null"
         />
       </div>
 
       <div class="form_submit">
-        <button type="submit">arrow_forward</button>
+        <button type="submit" [disabled]="isLoading || !form.valid">
+          <span *ngIf="isLoading" class="rotate">autorenew</span>
+          <span *ngIf="!isLoading">arrow_forward</span>
+        </button>
       </div>
     </form>
   </div>

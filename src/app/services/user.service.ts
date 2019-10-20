@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { User } from '@models/user.model';
-import { of, Observable } from 'rxjs';
+import { of } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class UserService {
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  getUser(username, password): Observable<User> {
+  getUser(username, password) {
     if (username === 'user' && password === 'qwerty123') {
       return of({
         id: 1,
@@ -16,6 +17,8 @@ export class UserService {
         password: 'qwerty123',
         token: 'token'
       });
+    } else {
+      return of(false);
     }
   }
 }

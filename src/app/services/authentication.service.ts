@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { User } from '@models/user.model';
 import { UserService } from '@services/user.service';
@@ -19,16 +18,6 @@ export class AuthenticationService {
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
-  }
-
-  login(username, password) {
-    this.userService.getUser(username, password).pipe(
-      map(user => {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-        return user;
-      })
-    );
   }
 
   logout() {
