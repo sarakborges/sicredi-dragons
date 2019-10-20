@@ -1,4 +1,4 @@
-<div id="login">
+<div id="login" [class.loading]="isLoading">
   <div class="login_section">
     <form class="login_form" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="title">Login</div>
