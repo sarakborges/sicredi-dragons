@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DragonsComponent } from './dragons.component';
+import { DragonsListComponent } from './list/dragons-list.component';
 
 const routes: Routes = [
   {
@@ -9,8 +10,14 @@ const routes: Routes = [
     component: DragonsComponent,
     children: [
       {
-        // path: 'list',
-        // component:
+        path: '',
+        redirectTo: 'list',
+        pathMatch: 'full'
+      },
+
+      {
+        path: 'list',
+        component: DragonsListComponent
       }
     ]
   }

@@ -1,0 +1,60 @@
+<div class="container">
+  <div id="dragons-list-component">
+    <ul class="dragons-list" *ngIf="!isLoading && dragons.length > 0">
+      <li class="dragons-title">
+        <div class="id">ID</div>
+        <div class="separator"></div>
+        <div class="name">Nome da fera</div>
+        <div class="separator"></div>
+        <div class="type">Tipo de dragão</div>
+        <div class="separator"></div>
+        <div class="created-at">Registrado em</div>
+        <div class="separator"></div>
+        <div class="actions">Ações</div>
+      </li>
+
+      <li class="dragon-item" *ngFor="let dragon of dragons">
+        <div class="id">{{ dragon.id }}</div>
+        <div class="separator"></div>
+        <div class="name">{{ dragon.name }}</div>
+        <div class="separator"></div>
+        <div class="type">{{ dragon.type }}</div>
+        <div class="separator"></div>
+        <div class="created-at">
+          {{ dragon.createdAt | date: 'dd/MM/yyyy' }}
+        </div>
+        <div class="separator"></div>
+        <div class="actions">
+          <a
+            [routerLink]="['/', '/main', 'dragons', 'edit', dragon.id]"
+            class="edit"
+          >
+            <i>create</i>
+            <span>Editar</span>
+          </a>
+
+          <a
+            href="javascript:;"
+            class="delete"
+            (click)="deleteDragon(dragon.id)"
+          >
+            <i>cancel</i>
+            <span>Deletar</span>
+          </a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="no-results" *ngIf="!isLoading && dragons.length < 1">
+      Infelizmente, os covis estão todos vazios. Outros aventureiros devem ter
+      derrotado todos os dragões antes de você chegar...
+    </div>
+
+    <div class="loading" *ngIf="isLoading">
+      Estamos tirando os dragões de seus covis! Aproveite esses momentos para se
+      equipar bem.
+
+      <div class="load-bar"></div>
+    </div>
+  </div>
+</div>

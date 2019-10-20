@@ -8,6 +8,27 @@
   outline: none !important;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
 body {
   font-family: $fontname;
+}
+
+.container {
+  width: 1170px;
+  max-width: 100%;
+  margin: auto;
 }

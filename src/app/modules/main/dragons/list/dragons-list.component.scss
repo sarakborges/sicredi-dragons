@@ -1,0 +1,148 @@
+@import '../../../common/common';
+
+#dragons-list-component {
+  padding: 30px;
+  min-width: 900px;
+  overflow: hidden auto;
+
+  .dragons-list {
+    .dragons-title,
+    .dragon-item {
+      display: flex;
+      align-items: center;
+
+      padding: 15px 0;
+
+      font-size: 14px;
+
+      > .separator {
+        margin: 0 15px;
+      }
+
+      > div:not(.separator) {
+        padding: 0 10px;
+
+        &.id {
+          width: 50px;
+          text-align: center;
+        }
+
+        &.name {
+          flex-grow: 1;
+        }
+
+        &.type {
+          width: 135px;
+          text-align: center;
+        }
+
+        &.created-at {
+          width: 135px;
+          text-align: center;
+        }
+
+        &.actions {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          width: 200px;
+
+          a {
+            display: flex;
+            align-items: center;
+
+            margin: 0 10px;
+
+            transition: color 0.3s;
+
+            i {
+              margin-right: 7px;
+
+              font-family: $iconfont;
+              font-style: normal;
+              font-size: 20px;
+            }
+
+            &.edit {
+              color: $blue;
+            }
+
+            &.delete {
+              color: $red;
+            }
+
+            &:hover {
+              color: $lightgrey;
+            }
+          }
+        }
+      }
+    }
+
+    .dragons-title {
+      font-weight: 700;
+    }
+
+    .dragon-item {
+      border-top: 1px solid $lightergrey;
+    }
+  }
+
+  .loading,
+  .no-results {
+    padding: 30px 0;
+
+    text-align: center;
+    font-size: 20px;
+    line-height: 160%;
+  }
+
+  .loading {
+    .load-bar {
+      position: relative;
+
+      width: 260px;
+      height: 7px;
+      margin: 30px auto 0;
+
+      background: $lightgrey;
+      border-radius: 3px;
+      overflow: hidden;
+
+      &:after {
+        content: '';
+
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+
+        width: 60px;
+        height: 7px;
+
+        background: $blue;
+
+        animation-name: loading-bar;
+        animation-duration: 0.7s;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+    }
+  }
+}
+
+.no-results {
+  color: $red;
+}
+
+@keyframes loading-bar {
+  from {
+    left: 0;
+  }
+
+  to {
+    left: calc(100% - 60px);
+  }
+}

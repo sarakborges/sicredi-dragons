@@ -9,6 +9,12 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'dragons',
+        pathMatch: 'full'
+      },
+
+      {
         path: 'dragons',
         loadChildren: './dragons/dragons.module#DragonsModule'
       }

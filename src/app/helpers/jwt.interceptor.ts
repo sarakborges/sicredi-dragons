@@ -22,7 +22,8 @@ export class JwtInterceptor implements HttpInterceptor {
     if (currentUser && currentUser.token) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`
+          // A API de mock não aceita o Authorization, então, nem adianta settar aqui. Mas fica o código como se fosse implementado em um sistema que requer isso
+          // Authorization: `Bearer ${currentUser.token}`
         }
       });
     }
