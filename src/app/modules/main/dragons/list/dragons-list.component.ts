@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 import Swal from 'sweetalert2';
 
@@ -12,9 +13,17 @@ import { DragonService } from '@services/dragon.service';
 })
 export class DragonsListComponent implements OnInit {
   dragons: Array<Dragon> = [];
+  filteredDragons: Array<Dragon> = [];
   isLoading: boolean = true;
 
-  constructor(private dragonService: DragonService) {}
+  form = this.formBuilder.group({
+    filter: ['']
+  });
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private dragonService: DragonService
+  ) {}
 
   ngOnInit() {
     this.getDragons();
@@ -24,7 +33,20 @@ export class DragonsListComponent implements OnInit {
     this.dragonService.getAllDragons().subscribe({
       next: dragons => {
         this.isLoading = false;
-        this.dragons = dragons;
+        this.filteredDragons = this.dragons = dragons;
+      }
+    });
+  }
+
+  filterDragons() {
+    this.filteredDragons = this.dragons.filter(dragon => {
+      if (
+        !this.form.controls.filter.value ||
+        dragon.name
+          .toLowerCase()
+          .includes(this.form.controls.filter.value.toLowerCase())
+      ) {
+        return dragon;
       }
     });
   }

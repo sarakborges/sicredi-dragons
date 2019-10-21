@@ -1,10 +1,33 @@
 <div class="container">
   <div id="dragons-list-component">
-    <ul class="dragons-list" *ngIf="!isLoading && dragons.length > 0">
+    <div class="new-dragon">
+      <form class="form" [formGroup]="form" (ngSubmit)="filterDragons()">
+        <div class="form_item">
+          <input
+            type="text"
+            name="filter"
+            id="filter"
+            formControlName="filter"
+            placeholder="Procurar por besta específica"
+          />
+        </div>
+
+        <div class="form_submit">
+          <button type="submit">search</button>
+        </div>
+      </form>
+
+      <a [routerLink]="['/', 'main', 'dragons', 'create']">
+        <i>add</i>
+        <span>Novo registro</span>
+      </a>
+    </div>
+
+    <ul class="dragons-list" *ngIf="!isLoading && filteredDragons.length > 0">
       <li class="dragons-title">
         <div class="id">ID</div>
         <div class="separator"></div>
-        <div class="name">Nome da fera</div>
+        <div class="name">Nome da besta</div>
         <div class="separator"></div>
         <div class="type">Tipo de dragão</div>
         <div class="separator"></div>
@@ -13,7 +36,7 @@
         <div class="actions">Ações</div>
       </li>
 
-      <li class="dragon-item" *ngFor="let dragon of dragons">
+      <li class="dragon-item" *ngFor="let dragon of filteredDragons">
         <div class="id">{{ dragon.id }}</div>
         <div class="separator"></div>
         <div class="name">{{ dragon.name }}</div>
@@ -26,7 +49,7 @@
         <div class="separator"></div>
         <div class="actions">
           <a
-            [routerLink]="['/', '/main', 'dragons', 'edit', dragon.id]"
+            [routerLink]="['/', 'main', 'dragons', 'edit', dragon.id]"
             class="edit"
           >
             <i>create</i>
