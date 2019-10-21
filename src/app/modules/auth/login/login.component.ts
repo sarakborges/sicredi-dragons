@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  onSubmit() {
+  doLogin() {
     if (this.form.valid) {
       this.isLoading = true;
 

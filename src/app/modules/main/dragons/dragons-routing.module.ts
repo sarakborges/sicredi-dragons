@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DragonsComponent } from './dragons.component';
 import { DragonsListComponent } from './list/dragons-list.component';
+import { DragonsFormComponent } from './form/dragons-form.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,16 @@ const routes: Routes = [
       {
         path: 'list',
         component: DragonsListComponent
+      },
+
+      {
+        path: 'edit/:id',
+        component: DragonsFormComponent
+      },
+
+      {
+        path: 'create',
+        component: DragonsFormComponent
       }
     ]
   }

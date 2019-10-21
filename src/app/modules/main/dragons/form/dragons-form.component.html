@@ -1,0 +1,65 @@
+<div class="container">
+  <div id="dragons-form-component">
+    <form
+      class="form"
+      [formGroup]="form"
+      (ngSubmit)="submitDragon()"
+      *ngIf="!isLoading"
+    >
+      <div class="title" *ngIf="!isEdit">Criando nova fera</div>
+      <div class="title" *ngIf="isEdit">
+        Editando "<span>{{ dragon.name }}</span
+        >"
+      </div>
+
+      <div
+        class="form_item"
+        [class.invalid]="
+          !form.controls.name.pristine && !form.controls.name.valid
+        "
+      >
+        <label for="name" [class.not-empty]="!!form.controls.name.value"
+          >Nome da besta</label
+        >
+
+        <input
+          type="text"
+          name="name"
+          id="name"
+          formControlName="name"
+          placeholder="Nome da besta"
+        />
+      </div>
+
+      <div
+        class="form_item"
+        [class.invalid]="
+          !form.controls.type.pristine && !form.controls.type.valid
+        "
+      >
+        <label for="name" [class.not-empty]="!!form.controls.type.value"
+          >Tipo de dragão</label
+        >
+
+        <input
+          type="text"
+          name="type"
+          id="type"
+          formControlName="type"
+          placeholder="Tipo de dragão"
+        />
+      </div>
+
+      <div class="form_submit">
+        <button type="submit">Enviar</button>
+      </div>
+    </form>
+
+    <div class="loading" *ngIf="isLoading">
+      Estamos trazendo informações sobre este dragão. Prepare suas poções para a
+      batalha!
+
+      <div class="load-bar"></div>
+    </div>
+  </div>
+</div>
